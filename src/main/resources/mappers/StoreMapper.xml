@@ -2,4 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
- 
+ <!-- 여기서 DB연결 -->
+ <mapper namespace="com.hi1856.lesson02.dao.StoreDAO"> <!-- mapper로 연결 -->
+ 	
+ 	<select id="selectStoreList" resultType="com.hi1856.lesson02.model.Store" >
+ 	<!-- id는 DAO의 메소드명과 일치 , resultType은 model의 링크를 통해 클레스명의 경로! -->
+ 			SELECT
+ 				*
+ 			FROM
+ 				`store`
+ 	</select>
+ </mapper>
