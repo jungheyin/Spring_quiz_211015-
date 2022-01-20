@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.hi1856.lesson03.dao.RealEstateDAO">
+ 	<select id="selectRealEstateById" parameterType="int" resultType="com.hi1856.lesson03.model.RealEstate">
+ 		SELECT
+ 			`id`
+			,`realtorId`
+			,`address`
+			,`area`
+			,`type` 
+			,`price` 
+			,`rentPrice` 
+			,`createdAt` 
+			,`updatedAt`
+		FROM
+			`real_estate`
+		WHERE
+			`id` = #{id}
+ 	</select>
+ 	
+ 	<select id="selectRealEstateListByRentPrice" parameterType="int" 
+ 	resultType="com.hi1856.lesson03.model.RealEstate">
+ 		SELECT
+ 			`id`
+			,`realtorId`
+			,`address`
+			,`area`
+			,`type` 
+			,`price` 
+			,`rentPrice` 
+			,`createdAt` 
+			,`updatedAt`
+		FROM
+			`real_estate`
+		WHERE
+			<!-- 1번째 방법 : 별로 안좋은 코드! -->
+			`rentPrice` &lt; #{rentPrice}
+		
+ 			
+ 	</select>
+ 	
+ 	<select id="selectRealEstateListByAreaAndPrie" parameterType="map" resultType="com.hi1856.lesson03.model.RealEstate">
+ 		SELECT
+ 		`id`
+			,`realtorId`
+			,`address`
+			,`area`
+			,`type` 
+			,`price` 
+			,`rentPrice` 
+			,`createdAt` 
+			,`updatedAt`
+		FROM
+			`real_estate`
+		WHERE
+		<![CDATA[
+			`type` = '매매'
+			AND `area`>= #{area}
+			AND `price` <= #{price}
+		]]>
+		
+ 	</select>
+ </mapper>
+ 
+ 

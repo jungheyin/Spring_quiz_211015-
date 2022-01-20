@@ -1,4 +1,4 @@
-package com.hi1856.lesson01;
+package com.hi1856;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
