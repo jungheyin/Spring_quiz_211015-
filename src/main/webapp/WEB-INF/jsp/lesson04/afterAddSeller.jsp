@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>판매자 추가</title>
+<title>결과 페이지</title>
 <!-- bootstrap CDN link -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -14,24 +14,6 @@
 
 </head>
 <body>
-	<div class="container">
-		<h1>판매자 추가</h1>
-		<form method="post" action="/lesson04/quiz01/add_seller">
-			<div class="form-group">
-				<label for="nickname"><b>닉네임</b></label>
-				<input type="text" id="nickname" name="nickname" class="form-control col-3">
-			</div>
-			<div class="form-group">
-				<label for="profileImageUrl"><b>프로필 사진 url</b></label>
-				<input type="text" id="profileImageUrl" name="profileImageUrl" class="form-control col-6">
-			</div>
-			<div class="form-group">
-				<label for="temperature"><b>온도</b></label>
-				<input type="text" id="temperature" name="temperature" class="form-control col-3">
-			</div>
-			<input type="submit" class="btn btn-info" value="추가">
-			
-		</form>
-	</div>
+<div class="display-1">입력성공!!</div>
 </body>
 </html>
