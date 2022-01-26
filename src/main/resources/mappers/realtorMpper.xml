@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.hi1856.lesson04.dao.RealtorDAO" >
+ 	<insert id="insertRealorBO" parameterType="com.hi1856.lesson04.model.Realtor"
+ 	useGeneratedKeys="true" keyProperty="id">
+ 		INSERT INTO `realtor` 
+ 		(
+			 	`office`
+				,`phoneNumber`
+				,`address`
+				,`grade`
+				,`createdAt`
+				,`updatedAt`
+ 		)
+ 		VALUES
+		(
+			#{office}
+			,#{phoneNumber}
+			,#{address}
+			,#{grade}
+			,NOW()
+			,NOW()
+		) 	
+ 	</insert>
+ 	
+ 	<select id="selectRealtorById" resultType="com.hi1856.lesson04.model.Realtor">
+ 		SELECT		<!-- 나중에 필드를 다 안쓰더라도 다 가져오는것이 좋다!! -->
+ 				`id`
+			 	,`office`
+				,`phoneNumber`
+				,`address`
+				,`grade`
+				,`createdAt`
+				,`updatedAt`
+		FROM
+			`realtor`
+		WHRER 		<!--  WHERE절이 다를때만 따로 만들어서 가져오는것이 좋음!! -->
+			`id` = #{id}    
+							
+ 	</select>
+ </mapper>
+ 
+ <!-- #{}는 ''가 붙는다!!? ${}는 ''가 안붙음!!데이터 값만 들어간다. -->
+ <!--#{}는 ''가 붙는다!!?표로 나와서 실제 파라미터 값으로 치환되서 출력된다. ${}는 ''가 안붙음!! 숫자인 경우는 괜찮지만 String값일 경우 에러가난다. -->
+ <!-- order by이 일경우나 동적인 부분에서만 사용! -->
