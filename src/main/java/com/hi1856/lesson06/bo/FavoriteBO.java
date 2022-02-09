@@ -1,9 +1,12 @@
 package com.hi1856.lesson06.bo;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hi1856.lesson06.dao.FavoriteDAO;
+import com.hi1856.lesson06.model.Favorite;
 
 @Service
 public class FavoriteBO {
@@ -13,5 +16,9 @@ public class FavoriteBO {
 
 	public void addFavorite(String name, String url) {
 		favoriteDAO.insertFavorite(name, url);
+	}
+	
+	public List<Favorite> getFavoriteList() {
+	 return favoriteDAO.selectFavoriteList();
 	}
 }

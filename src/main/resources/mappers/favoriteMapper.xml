@@ -11,10 +11,22 @@
 			,`updatedAt`
 			
 		VALUES
+		(
 			#{name}
 			,#{url}
 			,NOW()
 			,NOW()
+		)
 	</insert>
-
+	
+	<select id="selectFavoriteList" resultType="com.hi1856.lesson06.model.Favorite">
+		SELECT
+			`id`
+			`name`
+			,`url`
+			,`createdAt`
+			,`updatedAt`
+		FROM 
+			`favorite`;
+	</select>
 </mapper>

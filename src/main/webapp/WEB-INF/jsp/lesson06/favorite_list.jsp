@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,8 +14,26 @@
 
 </head>
 <body>
-	<div class="">
-		
+	<div class="container">
+		<h1>즐겨 찾기 목록</h1>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>No.</th>
+					<th>이름</th>
+					<th>주소</th>
+				</tr>
+			</thead>
+			<tbody>
+			<c:forEach var="favorite" items="${favoriteList}"> <!--  items는 List안에 가져온거 -->
+				<tr>
+					<td>${favorite.id}</td> <!-- 여기는 varStatus 혹은 DB의 id값을 넣어도 된다. -->
+					<td>${favorite.name}</td>
+					<td>${favorite.url}</td>
+				</tr>
+			</c:forEach>
+			</tbody>
+		</table>
 	</div>
 </body>
 </html>
