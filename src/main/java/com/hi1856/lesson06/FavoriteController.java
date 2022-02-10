@@ -53,5 +53,39 @@ public class FavoriteController {
 		return "lesson06/favorite_list";
 		}
 		// 여기까지 하고 또 확인하기!!
+	
+	// 주소중복확인 => AJAX 통신으로 들어온 통신 : 무조건 String
+	@PostMapping("/lesson06/is_duplication_url")
+	@ResponseBody
+	public Map<String, Boolean> isDuplication (
+			@RequestParam("url") String url ) {
+		
+		// DB중복 확인 (나중에)
+		Favorite favorite = favoriteBO.getFavoriteByUrl(url);
+		//Map 
+		Map<String, Boolean> result = new HashMap<>();
+		result.put("result", true);
+		
+		if (favorite == null) {
+			// 중복되지 않음
+			result.put("result",false);
+		}
+		return result;
+		
+		// 일단 무조건 중복이라 생각하고 result를 true 라고 가정하에 jsp로 넘어간다.
+	  }
+	
+	@RequestMapping("/lesson06/is_delete_favorite")
+	@ResponseBody
+	public String isDeleteById(
+			@RequestParam("id")int id) {
+		// DB 삭제
+		favoriteBO.deleteFavoriteById(id);
+		
+		return "redirect: lesson06/favorite_list";
+	}
+	
+	
+	
 	} 
 

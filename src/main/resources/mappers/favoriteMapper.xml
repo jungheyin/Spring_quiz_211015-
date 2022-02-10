@@ -5,11 +5,12 @@
 <mapper namespace="com.hi1856.lesson06.dao.FavoriteDAO">
 	<insert id="insertFavorite" parameterType="map">
 		INSERT INTO `favorite`
+		(
 			`name`
 			,`url`
 			,`createdAt`
-			,`updatedAt`
-			
+			,`updatedAt`	
+		)		
 		VALUES
 		(
 			#{name}
@@ -22,11 +23,33 @@
 	<select id="selectFavoriteList" resultType="com.hi1856.lesson06.model.Favorite">
 		SELECT
 			`id`
-			`name`
+			,`name`
 			,`url`
 			,`createdAt`
 			,`updatedAt`
 		FROM 
-			`favorite`;
+			`favorite`
 	</select>
+	
+	<select id="selectFavoriteByUrl" parameterType="string" resultType="com.hi1856.lesson06.model.Favorite">
+		SELECT
+			`id`
+			,`name`
+			,`url`
+			,`createdAt`
+			,`updatedAt`
+		FROM 
+			`favorite`
+		WHERE
+			`url` = #{url}
+		
+	</select>
+	
+	<delete id="deleteFavoriteById" parameterType="int">
+		DELETE
+		FROM 
+			`favorite`
+		WHERE
+			`id` = #{id}
+	</delete>
 </mapper>

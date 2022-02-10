@@ -56,6 +56,7 @@ public class weatherHistoryController {
 		
 		//DB INSERT
 		weatherHistoryBO.addWeatherHistory(date, weather, microDust, temperatures, precipitation, windSpeed);
+		
 		// 날씨 정보 목록 화면으로 리다이렉트
 		
 //		return response.sendRedirect("/weather_history_view"); 나중에 예외처리 해야한다ㅏ..

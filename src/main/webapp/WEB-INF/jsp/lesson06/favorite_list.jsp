@@ -22,6 +22,7 @@
 					<th>No.</th>
 					<th>이름</th>
 					<th>주소</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -30,8 +31,36 @@
 					<td>${favorite.id}</td> <!-- 여기는 varStatus 혹은 DB의 id값을 넣어도 된다. -->
 					<td>${favorite.name}</td>
 					<td>${favorite.url}</td>
+					<td>
+						<div class="deleteBtn btn btn-danger">삭제</div>
+					</td>
 				</tr>
 			</c:forEach>
+			
+			
+			<script>
+			$(document).ready(function() {
+				// 중복확인 버튼 클릭
+				$('.deleteBtn').on('click', function(){
+						// alert("삭제");
+			
+					
+					});
+				
+					$.ajax({
+						type: "POST",
+						url: "/lesson06/is_delete_favorite",
+						data: {"name": name, "url", url},
+						success: function(data) {
+							alert("삭제");
+						location.href:"/lesson06/favorite_list_view"
+						}
+						
+					});
+				});
+			
+			</script>
+			
 			</tbody>
 		</table>
 	</div>

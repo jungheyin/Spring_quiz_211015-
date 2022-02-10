@@ -25,7 +25,15 @@
 		</div>
 		<div class="form-group">
 			<label for="url">주소</label>
-			<input type="text" class="form-control" id="url">
+			<div class="form-inline">
+				<input type="text" class="form-control col-10 mr-5" id="url">
+				<button type="button" class="btn btn-info" id="checkBtn">중복확인</button>
+			</div>
+			
+			<!-- 중복된 url일 경우에만 나타낸다. -->
+			<small id="isDuplicationText" class="text-danger d-none">중복된 url 입니다.</small> 
+			<small id="availableUrlText" class="text-success d-none">저장 가능한 url 입니다.</small> 
+			
 		</div>
 		
 		<button class="btn btn-success btn-block" id="addBtn">추가</button> 
@@ -34,6 +42,36 @@
 	<script>
 		$(document).ready(function() {
 			
+			// 주소 중복 검사
+			$('#checkBtn').on('click', function(){
+				//alert("클릭");
+				let url = $('#url').val().trim();
+				if (url == '') {
+					alert("검사할 URL을 입력해주세요");
+					return;
+				}
+				
+				// get보단 post
+				$.ajax({
+					type: "POST"
+					, url: "/lesson06/is_duplication_url" // api
+					,data: {"url": url}
+					,success: function(data) {
+						if (data.result) {
+						// 중복일때 
+							$('#isDuplicationText').removeClass("d-none");
+							$('#availableUrlText').addClass("d-none");
+						} else { 
+						// 중복이 아닐때
+							$('#availableUrlText').removeClass("d-none");
+							$('#isDuplicationText').addClass("d-none");
+						} 
+					}
+				});
+				
+			});
+			
+			// 즐겨찾기 추가
 			$('#addBtn').on('click', function() {
 				// alert("추가");
 				
@@ -52,8 +90,14 @@
 				if (url.startsWith("http") === false && url.startsWith("https") === false ) {
 					alert("주소 형식이 잘못되었습니다.");
 					return;
-				} // 여기서 한번 검사해주는 것도 좋다.
+				}; // 여기서 한번 검사해주는 것도 좋다.
 				
+				// quiz02 - 중복확인 체크
+				if ($('#availableUrlText').hasClass("d-none")) { 
+					// 저장 가능 URL 문구가 없으면 검사를 다시 해야함
+					alert("다시 중복 확인을 해주세요");
+					return;
+				}
 				
 				// 서버 호출
 				$.ajax({ // 아작스는 void도 안되고 무조건 String 을 보내야한다.
@@ -61,18 +105,19 @@
 					, url: "/lesson06/add_favorite"
 					, data: {"name": name, "url":url} // 데이터를 보낼것이 있으면 data를 붙여주는것이다.
 					, success: function(data) {
-						alert(data.name); 
+						// alert(data.name); 
 						// string일경우 alert(data.name); 이런식으로사용한다.
 						if (data.result == "success") { // success인가 확인
 							// 목록 화면으로 이동
-						location.href="localhost/lesson06/favorite_list"
-							
+						location.href="/lesson06/favorite_list_view"	
 						}
 					}
 					, error: function(data) {
 						alert("error");
 					}
 				});
+				
+				
 		});
 			
 	});
