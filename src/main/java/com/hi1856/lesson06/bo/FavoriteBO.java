@@ -26,7 +26,9 @@ public class FavoriteBO {
 	 return favoriteDAO.selectFavoriteByUrl(url);
 	}
 	
-	public Favorite deleteFavoriteById(int id) {
+	// 삭제 성공 여부 이용할것이다.
+	public  int deleteFavoriteById(int id) {
 		return favoriteDAO.deleteFavoriteById(id);
+		
 	}
 }

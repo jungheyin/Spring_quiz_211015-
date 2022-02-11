@@ -75,14 +75,20 @@ public class FavoriteController {
 		// 일단 무조건 중복이라 생각하고 result를 true 라고 가정하에 jsp로 넘어간다.
 	  }
 	
-	@RequestMapping("/lesson06/is_delete_favorite")
+	// 즐겨찾기 삭제- AJAX 호출 
 	@ResponseBody
-	public String isDeleteById(
+	@RequestMapping("/lesson06/delete_favorite")
+	public Map<String, String> deleteFavorite(
 			@RequestParam("id")int id) {
 		// DB 삭제
-		favoriteBO.deleteFavoriteById(id);
+		int delteRowCount = favoriteBO.deleteFavoriteById(id);
 		
-		return "redirect: lesson06/favorite_list";
+		Map<String, String> result = new HashMap<>();
+		result.put("result", "success");
+		if (delteRowCount < 1) {
+			result.put("result", "fail");
+		}
+		return result;
 	}
 	
 	

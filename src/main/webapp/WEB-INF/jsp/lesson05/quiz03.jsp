@@ -65,7 +65,7 @@
 							-> 바로 사용 안할 경우변수에 저장해서 사용한다.
 						 -->
 							<fmt:parseDate  value="${bill.date}" pattern="yyyy-MM-dd" var="date" />
-							<fmt:formatDate value="${date}" pattern="yyyy년 MM월 dd일"" />
+							<fmt:formatDate value="${date}" pattern="yyyy년 MM월 dd일" />
 						</td>
 						<td></td>
 					</tr>
